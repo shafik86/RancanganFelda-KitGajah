@@ -9,7 +9,7 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 | GitHub | https://github.com/shafik86/RancanganFelda-KitGajah |
 | SSH remote | `git@github.com:shafik86/RancanganFelda-KitGajah.git` |
 | Branch | `main` |
-| GitHub Pages | https://shafik86.github.io/RancanganFelda-KitGajah/ (aktifkan di Settings → Pages → `main` / root) |
+| GitHub Pages | https://shafik86.github.io/RancanganFelda-KitGajah/ (auto dikemas kini setiap kali push ke `main`) |
 
 > ⚠ Repo ini **public**. `data.js` dan xlsx tracking mengandungi nama & no. telefon contact person.
 
@@ -52,6 +52,7 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ### Selesai (21 Okt 2026)
 
+- [x] **GitHub Pages** aktif — https://shafik86.github.io/RancanganFelda-KitGajah/
 - [x] **Air Tawar 01** — koordinat disahkan dengan OSM "Ayer Tawar 1" (~120 m); keyakinan Rendah → Sederhana
 - [x] **Lasah** — dialih ke OSM "Felda Lasah, Sungai Siput" (4.9239, 101.0658); titik lama (Kampung Lasah) ~9 km tersasar; keyakinan Rendah → Sederhana
 - [x] **Chalok Barat** — OSM (kampung FELDA + masjid) sepakat; koordinat felda.gov.my dianggap tersilap; keyakinan Sederhana → Tinggi
@@ -59,7 +60,6 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ### Perlu tindakan manual
 
-- [ ] **Aktifkan GitHub Pages** — perlu log masuk GitHub (Settings → Pages → Deploy from a branch → `main` / root). Tak boleh dibuat melalui SSH.
 - [ ] **Nitar 01** — sahkan kuantiti (tiada dalam Lampiran 1) dan wilayah (Johor Bahru vs Segamat; Nitar 02 di bawah Segamat). Tiada sumber awam yang menyatakannya.
 - [ ] **Bukit Sagu 2/3** — tiada titik dalam GeoNames/OSM; minta koordinat dari pejabat rancangan atau Wilayah Kuantan.
 - [ ] Kemas kini status bila Johor Bahru & Sahabat buat permintaan.
