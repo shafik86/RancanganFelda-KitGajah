@@ -28,9 +28,12 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ## Peraturan data
 
-- **Status**
+- **Status** (dikenal pasti ikut kata kunci dalam `statusKey()`, `app.js`)
   - `Belum menerima permintaan` → **Pending**
-  - Selain itu (cth. `Sebut harga telah dihantar`) → **Requested**
+  - mengandungi `PO` / `purchase order` / `pesanan belian` → **PO diterima**
+  - mengandungi `selesai` / `delivered` / `diserahkan` / `barang telah dihantar` → **Dihantar**
+  - selain itu (cth. `Sebut harga telah dihantar`) → **Requested**
+  - Status yang belum ada rancangan tidak dipapar dalam penapis & legend.
 - **Kit** = `null` bermaksud kuantiti belum ditetapkan (dipapar sebagai `—`).
 - **lokasi.keyakinan**: `H` tinggi, `M` sederhana, `L` rendah (⚠ perlu semak di lapangan).
 - Peta asas guna tiles **Esri** (tiada API key, boleh buka terus dari fail). Jangan guna `tile.openstreetmap.org` (disekat bila buka via `file://`) atau CARTO (perlu API key).
@@ -47,12 +50,19 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ## Tindakan seterusnya
 
-- [ ] Aktifkan GitHub Pages
-- [ ] Sahkan kuantiti **Nitar 01** (tiada dalam Lampiran 1) dan wilayahnya (Johor Bahru vs Segamat)
-- [ ] Semak koordinat lokasi keyakinan rendah: **Air Tawar 01**, **Lasah**, **Bukit Sagu 2/3**
-- [ ] Semak koordinat **Chalok Barat** (OSM vs felda.gov.my beza ~16 km)
-- [ ] Kemas kini status bila Johor Bahru & Sahabat buat permintaan
-- [ ] Tambah status seterusnya bila ada (cth. PO diterima, barang dihantar) — perlu ubah `STATUS` & `statusKey()` dalam `app.js`
+### Selesai (21 Okt 2026)
+
+- [x] **Air Tawar 01** — koordinat disahkan dengan OSM "Ayer Tawar 1" (~120 m); keyakinan Rendah → Sederhana
+- [x] **Lasah** — dialih ke OSM "Felda Lasah, Sungai Siput" (4.9239, 101.0658); titik lama (Kampung Lasah) ~9 km tersasar; keyakinan Rendah → Sederhana
+- [x] **Chalok Barat** — OSM (kampung FELDA + masjid) sepakat; koordinat felda.gov.my dianggap tersilap; keyakinan Sederhana → Tinggi
+- [x] Status seterusnya disediakan: **PO diterima** & **Dihantar** (auto ikut kata kunci)
+
+### Perlu tindakan manual
+
+- [ ] **Aktifkan GitHub Pages** — perlu log masuk GitHub (Settings → Pages → Deploy from a branch → `main` / root). Tak boleh dibuat melalui SSH.
+- [ ] **Nitar 01** — sahkan kuantiti (tiada dalam Lampiran 1) dan wilayah (Johor Bahru vs Segamat; Nitar 02 di bawah Segamat). Tiada sumber awam yang menyatakannya.
+- [ ] **Bukit Sagu 2/3** — tiada titik dalam GeoNames/OSM; minta koordinat dari pejabat rancangan atau Wilayah Kuantan.
+- [ ] Kemas kini status bila Johor Bahru & Sahabat buat permintaan.
 
 ## Cara kemas kini & push
 

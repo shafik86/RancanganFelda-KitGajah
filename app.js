@@ -12,15 +12,22 @@ const WIL_COLORS = {
 };
 const WILAYAH = Object.keys(WIL_COLORS);
 
+// Pipeline order: pending -> requested -> po -> delivered.
+// Statuses with no rancangan yet are hidden from the filter and legend.
 const STATUS = {
-  pending:   { label: "Pending",   color: "#c2410c", bg: "#ffedd5" },
-  requested: { label: "Requested", color: "#15803d", bg: "#dcfce7" },
+  pending:   { label: "Pending",      color: "#c2410c", bg: "#ffedd5" },
+  requested: { label: "Requested",    color: "#15803d", bg: "#dcfce7" },
+  po:        { label: "PO diterima",  color: "#1d4ed8", bg: "#dbeafe" },
+  delivered: { label: "Dihantar",     color: "#6d28d9", bg: "#ede9fe" },
 };
 
-// No request received yet = pending; anything else means the rancangan has requested
+// No request received yet = pending; anything not matching a later stage = requested
 function statusKey(s) {
   s = (s || "").toLowerCase();
-  return !s || /belum (ada|menerima) permintaan/.test(s) ? "pending" : "requested";
+  if (!s || /belum (ada|menerima) permintaan/.test(s)) return "pending";
+  if (/selesai|delivered|diserahkan|barang (telah |sudah )?(dihantar|diterima|sampai)/.test(s)) return "delivered";
+  if (/\bpo\b|purchase order|pesanan belian/.test(s)) return "po";
+  return "requested";
 }
 
 const CONF_LABEL = { H: "Tinggi", M: "Sederhana", L: "Rendah" };
@@ -169,7 +176,7 @@ function renderStats(rows) {
   document.getElementById("tRancangan").textContent = rows.length;
   const pending = rows.filter(r => r.sk === "pending").length;
   document.getElementById("tPending").textContent = pending;
-  document.getElementById("tPendingSub").textContent = `${rows.length - pending} requested`;
+  document.getElementById("tPendingSub").textContent = `${rows.length - pending} sudah request`;
   const low = rows.filter(r => r.low).length;
   document.getElementById("subStats").textContent = [
     rows.length < DATA.length ? `Ditapis: ${rows.length} daripada ${DATA.length} rancangan` : "",
