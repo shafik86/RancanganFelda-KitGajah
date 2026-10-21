@@ -43,10 +43,10 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 | | |
 |---|---|
 | Rancangan | 42 (8 wilayah) |
-| Pending | 16 — Johor Bahru (10), Segamat (1: Nitar 01), Sahabat (5) |
-| Requested | 26 — Segamat, Trolak, Kuantan, Terengganu, Gua Musang, Jengka |
+| Pending | 15 — Johor Bahru (9), Segamat (1: Nitar 01), Sahabat (5) |
+| Requested | 27 — Johor Bahru (Tenggaroh Selatan 01), Segamat, Trolak, Kuantan, Terengganu, Gua Musang, Jengka |
 | Kit | SM Mammoth 97 · Walkie Talkie 62 · Hailer 31 · Blinker 126 (ikut Excel tracking) |
-| Jumlah sebut harga | RM 241,915.00 |
+| Jumlah sebut harga | RM 249,365.00 (27 rancangan; dipapar dalam sidebar) |
 
 ## Tindakan seterusnya
 
@@ -57,6 +57,7 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 - [x] **Lasah** — dialih ke OSM "Felda Lasah, Sungai Siput" (4.9239, 101.0658); titik lama (Kampung Lasah) ~9 km tersasar; keyakinan Rendah → Sederhana
 - [x] **Chalok Barat** — OSM (kampung FELDA + masjid) sepakat; koordinat felda.gov.my dianggap tersilap; keyakinan Sederhana → Tinggi
 - [x] **Nitar 01** — dipindah ke **Wilayah Segamat** (no. 11), kit 3/2/1/3; **Kalabakan dibuang** (kuantitinya sebenarnya milik Nitar 01). Dikemas kini dalam `data.js`, Excel tracking & Excel rancangan.
+- [x] **Tenggaroh Selatan 01** — sebut harga ND/FWJB/Q/2026-10211 (RM7,450) dihantar kepada En. Badrul; contact, alamat & catatan semua rancangan disegerakkan dengan Excel tracking
 - [x] Status seterusnya disediakan: **PO diterima** & **Dihantar** (auto ikut kata kunci)
 
 ### Perlu tindakan manual

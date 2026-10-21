@@ -178,8 +178,10 @@ function renderStats(rows) {
   document.getElementById("tPending").textContent = pending;
   document.getElementById("tPendingSub").textContent = `${rows.length - pending} sudah request`;
   const low = rows.filter(r => r.low).length;
+  const quoted = rows.filter(r => r.jumlahRM != null);
   document.getElementById("subStats").textContent = [
     rows.length < DATA.length ? `Ditapis: ${rows.length} daripada ${DATA.length} rancangan` : "",
+    quoted.length ? `Sebut harga: ${fmtRM(quoted.reduce((t, r) => t + r.jumlahRM, 0))} (${quoted.length})` : "",
     low ? `⚠ ${low} lokasi perlu semak` : "",
   ].filter(Boolean).join(" · ");
 }
