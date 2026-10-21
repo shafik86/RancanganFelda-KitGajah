@@ -68,7 +68,7 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ## Cara kemas kini & push
 
-1. Ubah `data.js` (status, kit, contact, dll.).
+1. Ubah `data.js` (status, kit, contact, dll.), kemudian tukar `?v=` pada tag `<script>` dalam `index.html` (cth. `?v=20261022`) supaya browser tak guna versi cache.
 2. Buka `index.html` dalam browser untuk semak.
 3. Push:
 
