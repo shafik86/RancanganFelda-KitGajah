@@ -21,8 +21,8 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 | `style.css` | Semua gaya (desktop & mobile) |
 | `app.js` | Logik peta (Leaflet), senarai, penapis, status |
 | `data.js` | **Data 42 rancangan** — fail yang perlu dikemas kini |
-| `Ringkasan Sebut Harga Kit Gajah FELDA 2026 - HQ.pdf` | Sumber utama: kit, no. sebut harga, jumlah RM, status (21 Okt 2026) |
-| `Tracking FELDA ORDER FARMGUARD 2026.xlsx` | Contact, no. tel, alamat, catatan |
+| `Tracking FELDA ORDER FARMGUARD 2026.xlsx` | **Sumber utama**: senarai & no. rancangan, kit (Lampiran 1), status, contact, no. tel, alamat, catatan |
+| `Ringkasan Sebut Harga Kit Gajah FELDA 2026 - HQ.pdf` | No. sebut harga & jumlah RM (21 Okt 2026) |
 | `RANCANGAN_FELDA_KIT_GAJAH_2026.xlsx` | Senarai nama rancangan |
 | `FarmGuard_KitGajah_FELDA_2026.kml` | Koordinat rancangan |
 
@@ -43,9 +43,9 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 | | |
 |---|---|
 | Rancangan | 42 (8 wilayah) |
-| Pending | 16 — Johor Bahru (11), Sahabat (5) |
+| Pending | 16 — Johor Bahru (10), Sahabat (6) |
 | Requested | 26 — Segamat, Trolak, Kuantan, Terengganu, Gua Musang, Jengka |
-| Kit | SM Mammoth 94 · Walkie Talkie 60 · Hailer 30 · Blinker 123 |
+| Kit | SM Mammoth 97 · Walkie Talkie 62 · Hailer 31 · Blinker 126 (ikut Excel tracking) |
 | Jumlah sebut harga | RM 241,915.00 |
 
 ## Tindakan seterusnya
@@ -60,7 +60,8 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 
 ### Perlu tindakan manual
 
-- [ ] **Nitar 01** — sahkan kuantiti (tiada dalam Lampiran 1) dan wilayah (Johor Bahru vs Segamat; Nitar 02 di bawah Segamat). Tiada sumber awam yang menyatakannya.
+- [ ] **Senarai Excel vs PDF HQ tidak sama** — Excel (dan peta) ada **Kalabakan** (3/2/1/3); PDF HQ ganti dengan **Nitar 01** (kuantiti belum ditetapkan). Peta ikut Excel. Sahkan dengan HQ mana satu betul.
+- [ ] **Kalabakan** — koordinat masih titik sementara (pusat pekan Kalabakan); perlu koordinat sebenar.
 - [ ] **Bukit Sagu 2/3** — tiada titik dalam GeoNames/OSM; minta koordinat dari pejabat rancangan atau Wilayah Kuantan.
 - [ ] Kemas kini status bila Johor Bahru & Sahabat buat permintaan.
 
