@@ -13,22 +13,14 @@ const WIL_COLORS = {
 const WILAYAH = Object.keys(WIL_COLORS);
 
 const STATUS = {
-  none:  { label: "Belum ada permintaan",   color: "#8a8f8c", bg: "#eeeeec" },
-  draft: { label: "Draf siap, belum hantar", color: "#c2410c", bg: "#ffedd5" },
-  sent:  { label: "Dihantar / dalam proses", color: "#1d4ed8", bg: "#dbeafe" },
-  done:  { label: "Selesai",                 color: "#15803d", bg: "#dcfce7" },
-  other: { label: "Lain-lain",               color: "#57534e", bg: "#f5f5f4" },
+  pending:   { label: "Pending",   color: "#c2410c", bg: "#ffedd5" },
+  requested: { label: "Requested", color: "#15803d", bg: "#dcfce7" },
 };
 
-// Classify the free-text status from the tracking sheet. Order matters:
-// "belum dihantar" must be caught as draft before the generic "dihantar".
+// No request received yet = pending; anything else means the rancangan has requested
 function statusKey(s) {
   s = (s || "").toLowerCase();
-  if (!s || s.includes("belum ada")) return "none";
-  if (s.includes("draf") || s.includes("belum dihantar")) return "draft";
-  if (/selesai|diterima|delivered|diserahkan|barang (telah |sudah )?(dihantar|sampai)/.test(s)) return "done";
-  if (/dihantar|hantar|\bpo\b|pesanan|order|proses/.test(s)) return "sent";
-  return "other";
+  return !s || /belum (ada|menerima) permintaan/.test(s) ? "pending" : "requested";
 }
 
 const CONF_LABEL = { H: "Tinggi", M: "Sederhana", L: "Rendah" };
@@ -47,6 +39,8 @@ let activeNo = null;
 
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fmt = n => n.toLocaleString("ms-MY");
+const fmtKit = n => n == null ? "—" : n;
+const fmtRM = n => "RM " + n.toLocaleString("ms-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const sum = (rows, k) => rows.reduce((t, r) => t + (r.kit[k] || 0), 0);
 const colorOf = r => colorMode === "status" ? STATUS[r.sk].color : WIL_COLORS[r.wilayah];
 const badge = r => `<span class="badge" style="color:${STATUS[r.sk].color};background:${STATUS[r.sk].bg}">${STATUS[r.sk].label}</span>`;
@@ -86,7 +80,7 @@ function renderLegend() {
 function popupHtml(r) {
   const tel = telDigits(r.tel);
   const kit = KIT.map(([k, label]) =>
-    `<div class="${k === "mammoth" ? "hl" : ""}"><b>${r.kit[k]}</b><span>${label}</span></div>`).join("");
+    `<div class="${k === "mammoth" ? "hl" : ""}"><b>${fmtKit(r.kit[k])}</b><span>${label}</span></div>`).join("");
   return `<div class="pop">
     <div class="pop-title">${r.no}. FELDA ${esc(r.rancangan)}${r.low ? " ⚠" : ""}</div>
     <div class="pop-wil" style="color:${WIL_COLORS[r.wilayah]}">Wilayah ${esc(r.wilayah)} · ${esc(r.daerah)}, ${esc(r.negeri)}</div>
@@ -98,6 +92,8 @@ function popupHtml(r) {
     <h4>Tracking</h4>
     <table>
       <tr><td>Status</td><td>${esc(r.status) || "—"}</td></tr>
+      ${r.sebutHarga ? `<tr><td>Sebut harga</td><td>${esc(r.sebutHarga)}</td></tr>` : ""}
+      ${r.jumlahRM != null ? `<tr><td>Jumlah</td><td><b>${fmtRM(r.jumlahRM)}</b></td></tr>` : ""}
       ${r.contact ? `<tr><td>Contact</td><td>${esc(r.contact)}</td></tr>` : ""}
       ${tel ? `<tr><td>No. tel</td><td><a class="tel" href="tel:+${tel}">${ico("phone")} ${esc(r.tel)}</a><br><a class="tel" href="https://wa.me/${tel}" target="_blank" rel="noopener">${ico("chat")} WhatsApp</a></td></tr>` : ""}
       ${r.alamat ? `<tr><td>Alamat</td><td>${esc(r.alamat)}</td></tr>` : ""}
@@ -128,7 +124,7 @@ const iconOf = r => L.divIcon({
 DATA.forEach(r => {
   r.marker = L.marker([r.lat, r.lng], { icon: iconOf(r), title: `FELDA ${r.rancangan}` })
     .bindPopup(() => popupHtml(r), { maxWidth: 320 })
-    .bindTooltip(`${r.no}. ${r.rancangan} · ${r.kit.mammoth} SM Mammoth`, { direction: "top", offset: [0, -12] })
+    .bindTooltip(`${r.no}. ${r.rancangan} · ${fmtKit(r.kit.mammoth)} SM Mammoth`, { direction: "top", offset: [0, -12] })
     .on("click", () => setActive(r.no));
 });
 
@@ -171,12 +167,9 @@ function renderStats(rows) {
 
   document.getElementById("tWilayah").textContent = new Set(rows.map(r => r.wilayah)).size;
   document.getElementById("tRancangan").textContent = rows.length;
-  // Pending = anything not yet completed
-  const pending = rows.filter(r => r.sk !== "done");
-  document.getElementById("tPending").textContent = pending.length;
-  const draft = pending.filter(r => r.sk === "draft").length;
-  const none = pending.filter(r => r.sk === "none").length;
-  document.getElementById("tPendingSub").textContent = `${draft} draf · ${none} belum minta`;
+  const pending = rows.filter(r => r.sk === "pending").length;
+  document.getElementById("tPending").textContent = pending;
+  document.getElementById("tPendingSub").textContent = `${rows.length - pending} requested`;
   const low = rows.filter(r => r.low).length;
   document.getElementById("subStats").textContent = [
     rows.length < DATA.length ? `Ditapis: ${rows.length} daripada ${DATA.length} rancangan` : "",
@@ -210,7 +203,7 @@ function render() {
           <div class="sub">${esc(r.daerah)}, ${esc(r.negeri)}${r.low ? ` · <span class="warn">⚠ Semak</span>` : ""}</div>
           ${badge(r)}
         </div>
-        <span class="qty${r.kit.mammoth ? "" : " zero"}"><b>${r.kit.mammoth}</b>SM Mammoth</span>
+        <span class="qty${r.kit.mammoth ? "" : " zero"}"><b>${fmtKit(r.kit.mammoth)}</b>SM Mammoth</span>
       </div>`).join("")}
       </div>
     </section>`;
