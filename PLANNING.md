@@ -38,15 +38,15 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 - **lokasi.keyakinan**: `H` tinggi, `M` sederhana, `L` rendah (⚠ perlu semak di lapangan).
 - Peta asas guna tiles **Esri** (tiada API key, boleh buka terus dari fail). Jangan guna `tile.openstreetmap.org` (disekat bila buka via `file://`) atau CARTO (perlu API key).
 
-## Status semasa (21 Okt 2026)
+## Status semasa (24 Okt 2026)
 
 | | |
 |---|---|
 | Rancangan | 42 (8 wilayah) |
-| Pending | 15 — Johor Bahru (9), Segamat (1: Nitar 01), Sahabat (5) |
-| Requested | 27 — Johor Bahru (Tenggaroh Selatan 01), Segamat, Trolak, Kuantan, Terengganu, Gua Musang, Jengka |
+| Pending | 12 — Johor Bahru (6), Segamat (1: Nitar 01), Sahabat (5) |
+| Requested | 30 — Johor Bahru (Air Tawar 04, Lok Heng Timur, Pasak, Tenggaroh Selatan 01), Segamat, Trolak, Kuantan, Terengganu, Gua Musang, Jengka |
 | Kit | SM Mammoth 97 · Walkie Talkie 62 · Hailer 31 · Blinker 126 (ikut Excel tracking) |
-| Jumlah sebut harga | RM 249,365.00 (27 rancangan; dipapar dalam sidebar) |
+| Jumlah sebut harga | RM 267,670.00 (30 rancangan; dipapar dalam sidebar). Tidak termasuk Extended Warranty Nitar 02 (RM1,600) & quotation Kerani KG4 (RM9,700) |
 
 ## Tindakan seterusnya
 
@@ -59,6 +59,12 @@ Peta satu halaman untuk 42 rancangan FELDA yang terlibat dalam pembekalan Kit Ga
 - [x] **Nitar 01** — dipindah ke **Wilayah Segamat** (no. 11), kit 3/2/1/3; **Kalabakan dibuang** (kuantitinya sebenarnya milik Nitar 01). Dikemas kini dalam `data.js`, Excel tracking & Excel rancangan.
 - [x] **Tenggaroh Selatan 01** — sebut harga ND/FWJB/Q/2026-10211 (RM7,450) dihantar kepada En. Badrul; contact, alamat & catatan semua rancangan disegerakkan dengan Excel tracking
 - [x] Status seterusnya disediakan: **PO diterima** & **Dihantar** (auto ikut kata kunci)
+
+### Selesai (24 Okt 2026)
+
+- [x] **Johor Bahru** — sebut harga dihantar: Air Tawar 04 (ND/FWJB/Q/2026-10231, RM10,450), Lok Heng Timur (ND/FWJB/Q/2026-10232, RM1,550), Pasak (ND/FWJB/Q/2026-10241, RM6,000, FarmGuard sahaja)
+- [x] **Nitar 02** — R2 ND/FWSG/Q/2026-10191R2 (RM13,450) + Extended Warranty ND/FWSG/Q/2026-10231R1 (RM1,600)
+- [x] **Chiku 01, Chiku 03, Perasu** — R2 (RM6,945 setiap satu)
 
 ### Perlu tindakan manual
 
